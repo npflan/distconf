@@ -1,0 +1,6 @@
+# Insert values as needed and rename to config.py
+username = ''
+password = ''
+
+# Insert dist switch ips into here
+dist_sw = []
