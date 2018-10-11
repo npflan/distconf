@@ -10,7 +10,7 @@ def make_json():
     with open('access.csv') as f:
         reader = csv.reader(f, delimiter=';')
         for line in reader:
-            output[line[0]] = line[2]
+            output[line[0]] = line[1]
     return output
 
 SWTICH_DATA = make_json()
@@ -30,6 +30,8 @@ class DistPoint(threading.Thread):
             port = item[17:25]
             if name[0] in SWTICH_DATA.keys():
                 conf.append('interface ' + port)
+                conf.append('switchport trunk encapsulation dot1q')
+                conf.append('switchport mode trunk')
                 conf.append('switchport trunk native vlan ' + SWTICH_DATA[name[0]])
                 conf.append('switchport trunk allowed vlan 193,' + SWTICH_DATA[name[0]])
         conf.append('do wr')
