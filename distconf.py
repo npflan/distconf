@@ -42,8 +42,9 @@ class DistPoint(threading.Thread):
         client_pre.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         #Try to connect to device
         try:
-            client_pre.connect(host, username=username, password=password)
-        except:
+            client_pre.connect(host, username=username, password=password,allow_agent=False,look_for_keys=False)
+        except Exception as e:
+            print(repr(e))
             #Returns authentication error if connection fails
             for command in commands:
                 cmd_output[command] = 'Authentication error '
