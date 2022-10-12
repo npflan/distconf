@@ -33,7 +33,7 @@ class DistPoint(threading.Thread):
                 conf.append('switchport trunk encapsulation dot1q')
                 conf.append('switchport mode trunk')
                 conf.append('switchport trunk native vlan ' + SWTICH_DATA[name[0]])
-                conf.append('switchport trunk allowed vlan 193,' + SWTICH_DATA[name[0]])
+                conf.append('switchport trunk allowed vlan 193,240,' + SWTICH_DATA[name[0]])
         conf.append('do wr')
         return conf
     def execute_ssh_command(self,username,password,host,commands):
